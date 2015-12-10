@@ -19,17 +19,22 @@
         canvas.width = width;
         canvas.height = height;
         ctx = canvas.getContext('2d');
+if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
 
-        // create points
+  //dont create points on mobile      
+}
+else{
+	// create points
         points = [];
-        for(var x = 0; x < 30; x = x + 1) {
-            for(var y = 0; y < 30; y = y + 1) {
+        for(var x = 0; x < width; x = x + width/30) {
+            for(var y = 0; y < height; y = y + height/30) {
                 var px = x + Math.random()*width;
                 var py = y + Math.random()*height;
                 var p = {x: px, originX: px, y: py, originY: py };
                 points.push(p);
             }
         }
+}
 
         // for each point find the 5 closest points
         for(var i = 0; i < points.length; i++) {
