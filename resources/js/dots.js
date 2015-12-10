@@ -10,7 +10,7 @@
     function initHeader() {
         width = window.innerWidth;
         height = window.innerHeight;
-        target = {x: width/2, y: height/2};
+        target = {x: width/2, y: height/2 - height/10};
 
         largeHeader = document.getElementById('large-header');
         largeHeader.style.height = height+'px';
@@ -22,10 +22,10 @@
 
         // create points
         points = [];
-        for(var x = 0; x < width; x = x + width/20) {
-            for(var y = 0; y < height; y = y + height/20) {
-                var px = x + Math.random()*width/20;
-                var py = y + Math.random()*height/20;
+        for(var x = 0; x < width; x = x + width/30) {
+            for(var y = 0; y < height; y = y + height/30) {
+                var px = x + Math.random()*width;
+                var py = y + Math.random()*height;
                 var p = {x: px, originX: px, y: py, originY: py };
                 points.push(p);
             }
@@ -70,9 +70,7 @@
 
     // Event handling
     function addListeners() {
-        if(!('ontouchstart' in window)) {
-            window.addEventListener('mousemove', mouseMove);
-        }
+        
         window.addEventListener('scroll', scrollCheck);
         window.addEventListener('resize', resize);
     }
@@ -102,6 +100,10 @@
         largeHeader.style.height = height+'px';
         canvas.width = width;
         canvas.height = height;
+		var posx = width/2;
+		var posy = height/2;
+		target.x = posx;
+        target.y = posy;
     }
 
     // animation
@@ -117,13 +119,13 @@
             ctx.clearRect(0,0,width,height);
             for(var i in points) {
                 // detect points in range
-                if(Math.abs(getDistance(target, points[i])) < 4000) {
-                    points[i].active = 0.3;
+                if(Math.abs(getDistance(target, points[i])) < 25000) {
+                    points[i].active = 0.25;
                     points[i].circle.active = 0.6;
-                } else if(Math.abs(getDistance(target, points[i])) < 20000) {
+                } else if(Math.abs(getDistance(target, points[i])) < 65000) {
                     points[i].active = 0.1;
                     points[i].circle.active = 0.3;
-                } else if(Math.abs(getDistance(target, points[i])) < 40000) {
+                } else if(Math.abs(getDistance(target, points[i])) < 150000) {
                     points[i].active = 0.02;
                     points[i].circle.active = 0.1;
                 } else {

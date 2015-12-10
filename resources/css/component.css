@@ -2,6 +2,11 @@
 * {
 	text-decoration: none;
 }
+
+.container .large-header {
+	background-color: #000000;
+}
+
 .large-header {
 	position: relative;
 	width: 100%;
@@ -12,9 +17,6 @@
 	z-index: 2;
 }
 
-.container .large-header {
-	background-image: url('/resources/img/bg.jpg');
-}
 
 .main-title {
 	position: absolute;
@@ -37,6 +39,9 @@ a {
 	font-size: 4.2em;
 	letter-spacing: 0.1em;
 }
+
+
+
 
 @media only screen and (max-width : 768px) {
 	.container .main-title {
