@@ -20,8 +20,15 @@
         canvas.height = height;
         ctx = canvas.getContext('2d');
 if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-
-  //dont create points on mobile      
+  points = [];
+        for(var x = 0; x < width; x = x + width/100) {
+            for(var y = 0; y < height; y = y + height/100) {
+                var px = x + Math.random()*width;
+                var py = y + Math.random()*height;
+                var p = {x: px, originX: px, y: py, originY: py };
+                points.push(p);
+            }
+        }      
 }
 else{
 	// create points
