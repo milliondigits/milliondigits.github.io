@@ -1,7 +1,7 @@
 <div id="disqus_thread"></div>
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
-    var disqus_shortname = 'wferr';
+    var disqus_shortname = 'million';
     
     /* * * DON'T EDIT BELOW THIS LINE * * */
     (function() {
