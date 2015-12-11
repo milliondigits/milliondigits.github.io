@@ -19,29 +19,20 @@
         canvas.width = width;
         canvas.height = height;
         ctx = canvas.getContext('2d');
-if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-  points = [];
-        for(var x = 0; x < width; x = x + width/100) {
-            for(var y = 0; y < height; y = y + height/100) {
-                var px = x + Math.random()*width;
-                var py = y + Math.random()*height;
-                var p = {x: px, originX: px, y: py, originY: py };
-                points.push(p);
-            }
-        }      
-}
-else{
+
+
 	// create points
         points = [];
-        for(var x = 0; x < width; x = x + width/30) {
-            for(var y = 0; y < height; y = y + height/30) {
+        for(var x = 0; x < 12; x = x + 1) {
+            for(var y = 0; y < 12; y = y + 1) {
                 var px = x + Math.random()*width;
                 var py = y + Math.random()*height;
                 var p = {x: px, originX: px, y: py, originY: py };
                 points.push(p);
             }
         }
-}
+		
+
 
         // for each point find the 5 closest points
         for(var i = 0; i < points.length; i++) {
@@ -118,20 +109,11 @@ else{
         if(animateHeader) {
             ctx.clearRect(0,0,width,height);
             for(var i in points) {
-                // detect points in range
-                if(Math.abs(getDistance(target, points[i])) < 25000) {
-                    points[i].active = 0.25;
-                    points[i].circle.active = 0.6;
-                } else if(Math.abs(getDistance(target, points[i])) < 65000) {
-                    points[i].active = 0.1;
-                    points[i].circle.active = 0.3;
-                } else if(Math.abs(getDistance(target, points[i])) < 150000) {
-                    points[i].active = 0.02;
-                    points[i].circle.active = 0.1;
-                } else {
-                    points[i].active = 0;
-                    points[i].circle.active = 0;
-                }
+				points[i].active = .5 - Math.pow((2*(Math.abs(getDistance(target, points[i])))/200000),2);
+				points[i].circle.active = .5 - Math.pow((2*(Math.abs(getDistance(target, points[i])))/200000),2);
+				
+                
+				
 
                 drawLines(points[i]);
                 points[i].circle.draw();
@@ -141,8 +123,8 @@ else{
     }
 
     function shiftPoint(p) {
-        TweenLite.to(p, {x:p.originX-50+Math.random()*100,
-            y: p.originY-50+Math.random()*100,
+        TweenLite.to(p, 1+1*Math.random(), {x:p.originX-50+Math.random()*100,
+            y: p.originY-50+Math.random()*100, ease:Power0.easeNone,
             onComplete: function() {
                 shiftPoint(p);
             }});
