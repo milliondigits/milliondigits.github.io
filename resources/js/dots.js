@@ -123,8 +123,8 @@
     }
 
     function shiftPoint(p) {
-        TweenLite.to(p, 1+1*Math.random(), {x:p.originX-50+Math.random()*100,
-            y: p.originY-50+Math.random()*100, ease:Power0.easeNone,
+        TweenLite.to(p, .85+1*Math.random(), {x:p.originX-55+Math.random()*110,
+            y: p.originY-55+Math.random()*110, ease:Power0.easeNone,
             onComplete: function() {
                 shiftPoint(p);
             }});
