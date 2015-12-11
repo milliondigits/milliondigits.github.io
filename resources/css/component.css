@@ -57,12 +57,7 @@ p {
 }
 
 a {
-	color: #000000;
-	word-break: break-word;
-	display: -webkit-flex; /* Safari */
-    -webkit-flex-wrap: wrap; /* Safari 6.1+ */
-    display: flex;   
-    flex-wrap: wrap;
+    color: #f9f1e9;
 }
 
 .container .main-title {
